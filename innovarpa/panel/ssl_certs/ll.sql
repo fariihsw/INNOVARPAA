@@ -1,0 +1,2 @@
+ALTER TABLE usuario MODIFY id INT AUTO_INCREMENT;
+ALTER TABLE empresa MODIFY id INT AUTO_INCREMENT;usuarioinventariousuario

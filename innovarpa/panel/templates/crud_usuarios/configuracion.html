@@ -1,0 +1,51 @@
+{% extends '../index_junior.html'%}
+{% block content %}
+
+
+
+<div class="right_col" role="main" >
+    <center>
+    
+    <hr>
+    
+    <hr>
+    <h1>Personalización de umbral </h1>
+
+    <hr>
+    <form method="post" style="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <hr>
+        <button class="btn btn-dark btn-lg" type="button" id="send"><i class="fa fa-envelope"></i> Enviar</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Al hacer clic en el botón, se abrirá el modal
+        document.getElementById("send").onclick = function() {
+            Swal.fire({
+                title: '¿Está seguro que quiere generar este cambio?',
+                text: '',
+                icon: 'question', // Cambia a 'success', 'error', 'warning', 'question', etc.
+                showCancelButton: true,
+                confirmButtonText: 'Confirmar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Confirmado', 'Se han guardado los cambios.', 'success');
+                    // Si el usuario confirma, envía el formulario
+                    document.getElementById("myForm").submit();
+                } else if (result.isDismissed) {
+                    Swal.fire('Cancelar', 'Has hecho clic en cancelar.', 'error');
+                }
+            });
+        }
+    </script>
+  
+        
+</center>    
+</div>
+
+   
+
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends '../index_junior.html'%}
+{% block content %}
+
+
+<div class="right_col" role="main">
+  <hr>
+  <hr>
+  <center>
+    <h1>Alertas</h1>
+  </center>
+    <div class="container mt-5">
+      <div class="btn-group me-2" role="group" aria-label="Second group">
+        <button type="button" class="btn btn-secondary" onclick="showGroup(0)">1</button>
+        <button type="button" class="btn btn-secondary" onclick="showGroup(1)">2</button>
+        <button type="button" class="btn btn-secondary" onclick="showGroup(2)">3</button>
+    </div>
+      <table class="table table-danger" style="width:100%">
+          <thead>
+              <tr>
+                  <th scope="col">Descripción    <i class="fa fa-info"></i></th>
+                  <th scope="col">Calidad        <i class="fa fa-star"></i></th>
+                  <th scope="col">Hora Alerta    <i class="fa fa-calendar"></i></th>
+                  <th scope="col">Empresa        <i class="fa fa-briefcase"></i></th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for a in alertass %}
+                  <tr class="alert-row" style="display: none;">  <!-- Inicialmente ocultas -->
+                      <th scope="row">{{ a.descripcion }}</th>
+                      <td>{{ a.calidad_alerta }}</td>
+                      <td>{{ a.fecha }}</td>
+                      <td>{{ a.empresa_id }}</td>
+                  </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  
+   
+  </div>
+  
+  <script>
+      const rowsPerGroup = 5; // Número de filas por grupo
+      const totalRows = document.querySelectorAll('.alert-row').length; // Total de filas
+      const totalGroups = Math.ceil(totalRows / rowsPerGroup); // Total de grupos
+  
+      function showGroup(groupIndex) {
+          const rows = document.querySelectorAll('.alert-row');
+  
+          // Ocultar todas las filas
+          rows.forEach(row => {
+              row.style.display = 'none';
+          });
+  
+          // Calcular el índice de inicio y fin para el grupo
+          const start = groupIndex * rowsPerGroup;
+          const end = start + rowsPerGroup;
+  
+          // Mostrar las filas del grupo seleccionado
+          for (let i = start; i < end && i < totalRows; i++) {
+              rows[i].style.display = ''; // Mostrar la fila
+          }
+      }
+  </script>
+
+</div>
+
+{% endblock %}

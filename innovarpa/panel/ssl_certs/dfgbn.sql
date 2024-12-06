@@ -1,0 +1,2 @@
+ALTER TABLE inventario
+MODIFY COLUMN id_producto INT AUTO_INCREMENT;
